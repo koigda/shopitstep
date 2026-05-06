@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="mb-4 fw-bold">🛍 Магазин</h1>
+
+<!-- ФИЛЬТР -->
+<form method="GET" class="row g-2 mb-4">
+
+    <div class="col-md-3">
+        <input type="number" name="min_price"
+               placeholder="Мін ціна"
+               class="form-control"
+               value="{{ request.GET.min_price }}">
+    </div>
+
+    <div class="col-md-3">
+        <input type="number" name="max_price"
+               placeholder="Макс ціна"
+               class="form-control"
+               value="{{ request.GET.max_price }}">
+    </div>
+
+    <div class="col-md-3">
+        <select name="sort" class="form-control">
+            <option value="">Сортування</option>
+            <option value="price_asc">Дешеві → дорогі</option>
+            <option value="price_desc">Дорогі → дешеві</option>
+        </select>
+    </div>
+
+    <div class="col-md-3">
+        <button class="btn btn-primary w-100">
+            🔍 Знайти
+        </button>
+    </div>
+
+</form>
+
+{% block shop_content %}
+{% endblock %}
+
+{% endblock %}

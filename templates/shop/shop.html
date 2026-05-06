@@ -1,0 +1,76 @@
+{% extends "layout/shop_layout.html" %}
+
+{% block content %}
+
+<style>
+    .title {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .categories {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .card {
+        background: #fff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        transition: 0.2s;
+        text-align: center;
+    }
+
+    .card:hover {
+        transform: scale(1.03);
+    }
+
+    .card img {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+    }
+
+    .card h3 {
+        padding: 10px;
+        margin: 0;
+        color: #333;
+    }
+
+    .card a {
+        text-decoration: none;
+    }
+
+    .empty {
+        text-align: center;
+        margin-top: 30px;
+        font-size: 18px;
+    }
+</style>
+
+<h1 class="title">Категории товаров</h1>
+
+<div class="categories">
+    {% for category in categories %}
+        <div class="card">
+
+            <a href="#">
+                {% if category.image %}
+                    <img src="{{ category.image.url }}" alt="{{ category.title }}">
+                {% else %}
+                    <img src="https://via.placeholder.com/300x160" alt="no image">
+                {% endif %}
+
+                <h3>{{ category.title }}</h3>
+            </a>
+
+        </div>
+    {% empty %}
+        <p class="empty">Категорий пока нет</p>
+    {% endfor %}
+</div>
+
+{% endblock %}
